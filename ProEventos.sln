@@ -8,6 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3CAF00EF-EEE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProEventos.API", "Back\src\ProEventos.API\ProEventos.API.csproj", "{99473FA9-31A6-B6A7-6146-DDD9D6CC7FBE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3CAF00EF-EEE8-D88D-9D7E-C9F39A564E3B} = {11BF4459-C332-B9BD-164A-F44681F2EC0B}
 		{99473FA9-31A6-B6A7-6146-DDD9D6CC7FBE} = {3CAF00EF-EEE8-D88D-9D7E-C9F39A564E3B}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {3CAF00EF-EEE8-D88D-9D7E-C9F39A564E3B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E78D115F-3D40-4A40-AA95-E70477914147}
