@@ -20,18 +20,20 @@ namespace ProEventos.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // Adiciona o serviço do Entity Framework Core ao container de injeção de dependência.
-            // Aqui, está sendo configurado para usar o banco de dados SQLite.
-            // O DataContext é a classe que representa o contexto do banco de dados (herda de DbContext).
-            // O método UseSqlite recebe a string de conexão definida no appsettings.json (chave "Default").
+            // Adiciona o serviï¿½o do Entity Framework Core ao container de injeï¿½ï¿½o de dependï¿½ncia.
+            // Aqui, estï¿½ sendo configurado para usar o banco de dados SQLite.
+            // O DataContext ï¿½ a classe que representa o contexto do banco de dados (herda de DbContext).
+            // O mï¿½todo UseSqlite recebe a string de conexï¿½o definida no appsettings.json (chave "Default").
             services.AddDbContext<DataContext>(
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
 
-            // Adiciona os serviços necessários para os controllers da API.
+            // Adiciona os serviï¿½os necessï¿½rios para os controllers da API.
             services.AddControllers();
 
-            // Adiciona e configura o Swagger para documentação da API.
+            services.AddCors();
+
+            // Adiciona e configura o Swagger para documentaï¿½ï¿½o da API.
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProEventos.API", Version = "v1" });
@@ -42,21 +44,25 @@ namespace ProEventos.API
         {
             if (env.IsDevelopment())
             {
-                // Middleware para exibir páginas de exceção detalhadas em ambiente de desenvolvimento.
+                // Middleware para exibir pï¿½ginas de exceï¿½ï¿½o detalhadas em ambiente de desenvolvimento.
                 app.UseDeveloperExceptionPage();
-                // Ativa o Swagger e sua interface gráfica.
+                // Ativa o Swagger e sua interface grï¿½fica.
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProEventos.API v1"));
             }
 
-            // Redireciona requisições HTTP para HTTPS.
+            // Redireciona requisiï¿½ï¿½es HTTP para HTTPS.
             app.UseHttpsRedirection();
 
-            // Habilita o roteamento de requisições.
+            // Habilita o roteamento de requisiï¿½ï¿½es.
             app.UseRouting();
 
-            // Habilita a autorização (caso seja configurada).
+            // Habilita a autorizaï¿½ï¿½o (caso seja configurada).
             app.UseAuthorization();
+
+            app.UseCors(cors => cors.AllowAnyHeader()
+                                      .AllowAnyMethod()
+                                      .AllowAnyOrigin());
 
             // Mapeia os endpoints dos controllers.
             app.UseEndpoints(endpoints =>
