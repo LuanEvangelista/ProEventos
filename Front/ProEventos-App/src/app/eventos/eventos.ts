@@ -1,9 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { response } from 'express';
-
 
 @Component({
   selector: 'app-eventos',
@@ -12,22 +9,19 @@ import { response } from 'express';
   templateUrl: './eventos.html',
   styleUrls: ['./eventos.scss']
 })
-export class Eventos {
+export class Eventos implements OnInit {
   public eventos: any;
 
-  public getEventos(): void {
-    this.http.get('https://localhost:5001/api/Eventos').subscribe (
-      response => this.eventos = response,
-      error =>console.log(error),
-    )
-
-  
-  }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getEventos();
   }
 
-  constructor(private http: HttpClient) { }
+  public getEventos(): void {
+    this.http.get('https://localhost:5001/api/Eventos').subscribe(
+      response => this.eventos = response,
+      error => console.log(error)
+    );
+  }
 }
-

@@ -1,11 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Eventos } from "./eventos/eventos";
-import { PalestrantesComponent } from "./palestrantes/palestrantes.component";
-import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { Eventos } from './eventos/eventos';
+import { PalestrantesComponent } from './palestrantes/palestrantes.component';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Eventos, PalestrantesComponent,HttpClientModule],
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, Eventos, PalestrantesComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
