@@ -5,7 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using ProEventos.API.Data;
+using ProEventos.Application;
+using ProEventos.Application.Contratos;
+using ProEventos.Persistence;
+using ProEventos.Persistence.Contextos;
+using ProEventos.Persistence.Contratos;
 
 namespace ProEventos.API
 {
@@ -24,13 +28,16 @@ namespace ProEventos.API
             // Aqui, est� sendo configurado para usar o banco de dados SQLite.
             // O DataContext � a classe que representa o contexto do banco de dados (herda de DbContext).
             // O m�todo UseSqlite recebe a string de conex�o definida no appsettings.json (chave "Default").
-            services.AddDbContext<DataContext>(
+            services.AddDbContext<ProEventosContext>(
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
 
             // Adiciona os servi�os necess�rios para os controllers da API.
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+            services.AddScoped<IEventoService, EventoService>();
+            services.AddScoped<IGeralPersist, GeralPersist>();
+            services.AddScoped<IEventosPersist, EventosPersist>();
             services.AddCors();
 
             // Adiciona e configura o Swagger para documenta��o da API.
