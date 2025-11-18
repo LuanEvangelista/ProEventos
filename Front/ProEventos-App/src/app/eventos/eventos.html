@@ -1,3 +1,7 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+  <p style="color: white">Carregando eventos...</p>
+</ngx-spinner>
+
 <h1>Eventos</h1>
 <hr />
 
@@ -7,15 +11,15 @@
     <input type="text" class="form-control mr-2" placeholder="Buscar" [(ngModel)]="filtroLista" />
   </div>
 </div>
-<!-- <h3>Filtro: {{ filtroLista }}</h3> -->
+
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr>
       <th>#</th>
       <th>
         <button type="button" class="btn btn-outline-light btn-sm" (click)="alterarImagem()">
-          <i class="{{ mostrarImagem ? 'fa fa-eye' : 'fa fa-eye-slash' }}"></i>
-          {{ mostrarImagem ? 'Ocultar Imagem' : 'Mostrar Imagem' }}
+          <i class="{{ mostrarImagem() ? 'fa fa-eye' : 'fa fa-eye-slash' }}"></i>
+          {{ mostrarImagem() ? 'Ocultar Imagem' : 'Mostrar Imagem' }}
         </button>
       </th>
       <th>Tema</th>
@@ -26,15 +30,14 @@
       <th>Opções</th>
     </tr>
   </thead>
-  @if(eventos && eventos.length) {
 
+  @if(eventosFiltrados().length > 0) {
   <tbody>
-    @for (evento of eventosFiltrados; track evento.id){
-
+    @for (evento of eventosFiltrados(); track evento.id) {
     <tr>
       <td>{{ evento.id }}</td>
       <td>
-        @if(mostrarImagem) {
+        @if(mostrarImagem()) {
         <img src="/assets/{{ evento.imagemURL }}" alt="" [style.width.px]="100" />
         }
       </td>
@@ -46,7 +49,6 @@
       <td>
         <button type="button" class="btn btn-primary btn-sm mr-2" tooltip="Editar">
           <i class="fa fa-edit"></i>
-          Editar
         </button>
         <button
           type="button"
@@ -55,20 +57,19 @@
           (click)="openModal(template)"
         >
           <i class="fa fa-trash"></i>
-          Excluir
         </button>
       </td>
     </tr>
     }
   </tbody>
-  }@else{
-  <tfoot>
+  } @else {
+  <tbody>
     <tr>
       <td colspan="8" class="text-center">
-        <h4>Nenhum Evento encontrado</h4>
+        <h4>Nenhum evento encontrado</h4>
       </td>
     </tr>
-  </tfoot>
+  </tbody>
   }
 </table>
 

@@ -26,7 +26,11 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss", "node_modules/ngx-toastr/toastr.css"],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/ngx-spinner/animations/ball-scale-multiple.css"
+            ],
             "outputMode": "static"
           },
           "configurations": {
@@ -80,7 +84,6 @@
               }
             ],
             "styles": ["src/styles.scss"]
-            
           }
         }
       }

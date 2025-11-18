@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, PLATFORM_ID, inject } from '@angular/core';
+import { Component, OnInit, TemplateRef, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EventoService } from '../../services/evento.service';
@@ -7,44 +7,58 @@ import { DateTimeFormatPipe } from '../helpers/DateTimeFormat.pipe';
 import { TooltipDirective } from 'ngx-bootstrap/tooltip';
 import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-eventos',
   standalone: true,
-  imports: [CommonModule, FormsModule, DateTimeFormatPipe, TooltipDirective, ModalModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    DateTimeFormatPipe,
+    TooltipDirective,
+    ModalModule,
+    NgxSpinnerModule,
+  ],
   templateUrl: './eventos.html',
   styleUrls: ['./eventos.scss'],
 })
 export class Eventos implements OnInit {
   modalRef?: BsModalRef;
 
-  public eventos: Evento[] = [];
-  public eventosFiltrados: Evento[] = [];
+  // USE SIGNALS
+  public eventos = signal<Evento[]>([]);
+  public mostrarImagem = signal(true);
+  private _filtroLista = signal('');
 
-  public mostrarImagem: boolean = true;
-  private _filtroLista: string = '';
-
+  // Getter/Setter para filtroLista (compatível com ngModel)
   public get filtroLista(): string {
-    return this._filtroLista;
+    return this._filtroLista();
   }
 
   public set filtroLista(value: string) {
-    this._filtroLista = value;
-    this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
+    this._filtroLista.set(value);
   }
 
-  public filtrarEventos(filtrarPor: string): Evento[] {
-    filtrarPor = filtrarPor.toLocaleLowerCase();
-    return this.eventos.filter(
+  // Computed signal para filtrar automaticamente
+  public eventosFiltrados = computed(() => {
+    const filtro = this._filtroLista().toLocaleLowerCase();
+    const todosEventos = this.eventos();
+
+    if (!filtro) return todosEventos;
+
+    return todosEventos.filter(
       (evento: Evento) =>
-        evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
-        evento.local.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+        evento.tema.toLocaleLowerCase().indexOf(filtro) !== -1 ||
+        evento.local.toLocaleLowerCase().indexOf(filtro) !== -1
     );
-  }
+  });
+
   constructor(
     private eventoService: EventoService,
     private modalService: BsModalService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
   ) {}
 
   public ngOnInit(): void {
@@ -52,19 +66,29 @@ export class Eventos implements OnInit {
   }
 
   public alterarImagem(): void {
-    this.mostrarImagem = !this.mostrarImagem;
+    this.mostrarImagem.update((v) => !v);
   }
 
   public getEventos(): void {
-    this.eventoService.getEventos().subscribe(
-      (_eventos: Evento[]) => {
-        this.eventos = _eventos;
-        this.eventosFiltrados = _eventos;
+    this.spinner.show();
+
+    this.eventoService.getEventos().subscribe({
+      next: (_eventos: Evento[]) => {
+        this.eventos.set(_eventos);
+        // Aguarda 3 segundos antes de esconder o spinner (para visualização)
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 3000);
       },
-      (error) => {
-        console.error('Erro ao carregar eventos:', error);
-      }
-    );
+      error: (error) => {
+        console.error('❌ Erro ao carregar eventos:', error);
+        // Aguarda 3 segundos antes de esconder o spinner mesmo com erro
+        setTimeout(() => {
+          this.spinner.hide();
+          this.toastr.error('Erro ao carregar eventos');
+        }, 3000);
+      },
+    });
   }
 
   openModal(template: TemplateRef<void>) {
