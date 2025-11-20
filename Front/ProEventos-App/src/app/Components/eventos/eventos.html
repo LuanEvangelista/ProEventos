@@ -1,8 +1,5 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple">
-  <p style="color: white">Carregando eventos...</p>
-</ngx-spinner>
+<app-Titulos [titulo]="'Eventos'"></app-Titulos>
 
-<h1>Eventos</h1>
 <hr />
 
 <div class="form-inline">
@@ -80,3 +77,7 @@
     <button type="button" class="btn btn-primary" (click)="decline()">Não</button>
   </div>
 </ng-template>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+  <p style="color: white">Carregando eventos...</p>
+</ngx-spinner>

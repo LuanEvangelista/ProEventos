@@ -1,13 +1,14 @@
 import { Component, OnInit, TemplateRef, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { EventoService } from '../../services/evento.service';
-import { Evento } from '../models/Evento';
-import { DateTimeFormatPipe } from '../helpers/DateTimeFormat.pipe';
+import { EventoService } from '../../../services/evento.service';
+import { Evento } from '../../models/Evento';
+import { DateTimeFormatPipe } from '../../helpers/DateTimeFormat.pipe';
 import { TooltipDirective } from 'ngx-bootstrap/tooltip';
 import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { TitulosComponent } from '../../shared/Titulos/Titulos.component';
 
 @Component({
   selector: 'app-eventos',
@@ -19,6 +20,7 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
     TooltipDirective,
     ModalModule,
     NgxSpinnerModule,
+    TitulosComponent,
   ],
   templateUrl: './eventos.html',
   styleUrls: ['./eventos.scss'],
@@ -78,7 +80,7 @@ export class Eventos implements OnInit {
         // Aguarda 3 segundos antes de esconder o spinner (para visualização)
         setTimeout(() => {
           this.spinner.hide();
-        }, 3000);
+        }, 1000);
       },
       error: (error) => {
         console.error('❌ Erro ao carregar eventos:', error);
@@ -86,7 +88,7 @@ export class Eventos implements OnInit {
         setTimeout(() => {
           this.spinner.hide();
           this.toastr.error('Erro ao carregar eventos');
-        }, 3000);
+        }, 1000);
       },
     });
   }
