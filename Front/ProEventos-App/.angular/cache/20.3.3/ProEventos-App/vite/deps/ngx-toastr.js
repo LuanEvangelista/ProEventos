@@ -1,8 +1,3 @@
-import {
-  DomSanitizer
-} from "./chunk-IMBAVQUX.js";
-import "./chunk-JPQ4ZBVQ.js";
-import "./chunk-DY64JWKR.js";
 import "./chunk-B77SRWSB.js";
 import {
   animate,
@@ -12,8 +7,13 @@ import {
   trigger
 } from "./chunk-6VPHERGZ.js";
 import {
+  DomSanitizer
+} from "./chunk-2WI7I2TL.js";
+import "./chunk-JPQ4ZBVQ.js";
+import {
   NgIf
 } from "./chunk-3DSPZRIM.js";
+import "./chunk-DY64JWKR.js";
 import "./chunk-YLHXK2KV.js";
 import {
   ApplicationRef,
