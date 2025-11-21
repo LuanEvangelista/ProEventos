@@ -1,16 +1,9 @@
-<app-Titulos [titulo]="'Eventos'"></app-Titulos>
-
-<!-- Form inline legado removido (.form-inline / .mr-2 eram Bootstrap 4) -->
-<!--
-<div class="row g-2 align-items-center mb-3">
-  <div class="col-auto">
-    <label class="col-form-label me-2" for="filtroInput">Filtro:</label>
-  </div>
-  <div class="col-auto">
-    <input id="filtroInput" type="text" class="form-control" placeholder="Buscar" [(ngModel)]="filtroLista" />
-  </div>
-</div>
--->
+<app-Titulos
+  [titulo]="'Eventos'"
+  [subtitulo]="'Lista de eventos'"
+  [iconClass]="'fa fa-calendar-alt'"
+  [botaoListar]="true"
+></app-Titulos>
 
 <div class="row g-2 align-items-center mb-3">
   <div class="col-auto">
