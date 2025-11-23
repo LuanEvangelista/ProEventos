@@ -6,10 +6,10 @@ import {
   getBsVer,
   parseTriggers,
   warnOnce
-} from "./chunk-PWBXTY7D.js";
+} from "./chunk-7QQXI7EN.js";
 import {
   CommonModule
-} from "./chunk-3DSPZRIM.js";
+} from "./chunk-JMLMG77U.js";
 import "./chunk-YLHXK2KV.js";
 import {
   ChangeDetectionStrategy,
@@ -41,7 +41,8 @@ import {
   ɵɵdomElementStart,
   ɵɵprojection,
   ɵɵprojectionDef
-} from "./chunk-AYZPDHYN.js";
+} from "./chunk-F2UOR3E6.js";
+import "./chunk-OCBFZOLU.js";
 
 // node_modules/ngx-bootstrap/tooltip/fesm2022/ngx-bootstrap-tooltip.mjs
 var _c0 = ["*"];
