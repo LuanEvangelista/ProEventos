@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TitulosComponent } from "../../shared/Titulos/Titulos.component";
+import { TitulosComponent } from '../../../shared/Titulos/Titulos.component';
 
 @Component({
   selector: 'app-perfil',
+  standalone: true,
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.scss'],
   imports: [TitulosComponent],

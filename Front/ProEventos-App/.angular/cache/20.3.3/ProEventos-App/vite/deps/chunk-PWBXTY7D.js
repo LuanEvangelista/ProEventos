@@ -1,6 +1,6 @@
 import {
   isPlatformBrowser
-} from "./chunk-JMLMG77U.js";
+} from "./chunk-3DSPZRIM.js";
 import {
   ApplicationRef,
   ComponentFactoryResolver$1,
@@ -17,6 +17,8 @@ import {
   RendererFactory2,
   Subject,
   TemplateRef,
+  __spreadProps,
+  __spreadValues,
   animationFrameScheduler,
   assertInInjectionContext,
   fromEvent,
@@ -28,11 +30,7 @@ import {
   takeUntil,
   ɵɵdefineInjectable,
   ɵɵinject
-} from "./chunk-F2UOR3E6.js";
-import {
-  __spreadProps,
-  __spreadValues
-} from "./chunk-OCBFZOLU.js";
+} from "./chunk-AYZPDHYN.js";
 
 // node_modules/ngx-bootstrap/utils/fesm2022/ngx-bootstrap-utils.mjs
 var Trigger = class {
@@ -1468,4 +1466,4 @@ ngx-bootstrap/utils/fesm2022/ngx-bootstrap-utils.mjs:
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-7QQXI7EN.js.map
+//# sourceMappingURL=chunk-PWBXTY7D.js.map

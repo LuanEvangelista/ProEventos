@@ -4,7 +4,7 @@ import {
   PLATFORM_BROWSER_ID,
   getDOM,
   setRootDomAdapter
-} from "./chunk-JMLMG77U.js";
+} from "./chunk-3DSPZRIM.js";
 import {
   XhrFactory,
   parseCookieValue
@@ -33,6 +33,7 @@ import {
   TestabilityRegistry,
   TracingService,
   ViewEncapsulation,
+  __spreadValues,
   _global,
   allLeavingAnimations,
   createPlatformFactory,
@@ -45,10 +46,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-F2UOR3E6.js";
-import {
-  __spreadValues
-} from "./chunk-OCBFZOLU.js";
+} from "./chunk-AYZPDHYN.js";
 
 // node_modules/@angular/platform-browser/fesm2022/dom_renderer.mjs
 var EVENT_MANAGER_PLUGINS = new InjectionToken(ngDevMode ? "EventManagerPlugins" : "");
@@ -1234,4 +1232,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-RZD4G5TX.js.map
+//# sourceMappingURL=chunk-JPQ4ZBVQ.js.map
