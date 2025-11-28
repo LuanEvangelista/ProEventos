@@ -1,23 +1,17 @@
 import { Component, computed, signal, TemplateRef } from '@angular/core';
-import { Evento } from '../../../models/Evento';
-import { EventoService } from '../../../../services/evento.service';
+import { Evento } from '@app/models/Evento';
+import { EventoService } from '@app/../services/evento.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService, NgxSpinnerComponent } from 'ngx-spinner';
-import { DateTimeFormatPipe } from '../../../helpers/DateTimeFormat.pipe';
+import { DateTimeFormatPipe } from '@app/helpers/DateTimeFormat.pipe';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-evento-lista',
-  imports: [
-    DateTimeFormatPipe,
-    NgxSpinnerComponent,
-    FormsModule,
-    TooltipModule,
-    RouterLink
-],
+  imports: [DateTimeFormatPipe, NgxSpinnerComponent, FormsModule, TooltipModule, RouterLink],
   templateUrl: './evento-lista.html',
   styleUrls: ['./evento-lista.scss'],
 })
