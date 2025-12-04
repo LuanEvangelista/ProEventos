@@ -121,7 +121,9 @@
             formControlName="confirmPassword"
           />
           @if(f.confirmPassword.errors?.required && f.confirmPassword?.touched){
-          <div class="invalid-feedback">Senha é obrigatória.</div>
+          <div class="invalid-feedback">Confirme Senha é obrigatória.</div>
+          } @else if (f.confirmPassword.errors?.mustMatch && f.confirmPassword?.touched) {
+          <div class="invalid-feedback">As senhas não coincidem.</div>
           }
         </div>
       </div>

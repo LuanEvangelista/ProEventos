@@ -1,6 +1,6 @@
 <app-Titulos [titulo]="'Perfil'"></app-Titulos>
 <div class="card rounded shadow-sm">
-  <form>
+  <form [formGroup]="form">
     <div class="row p-3">
       <div class="col-lg-3 pt-1">
         <div class="card mb-3">
@@ -48,7 +48,7 @@
           </div>
           <div class="col mb-3">
             <label>Título</label>
-            <select class="form-control">
+            <select class="form-control" >
               <option value=""></option>
               <option value="0">Não Quero</option>
               <option value="Senhorita">Tecnólogo(a)</option>
@@ -62,7 +62,7 @@
           </div>
           <div class="col-sm-5 mb-3">
             <label>Primeiro Nome</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control"  />
           </div>
           <div class="col-sm-5 mb-3">
             <label>Último nome</label>
@@ -110,9 +110,7 @@
     <div class="card-footer">
       <div class="d-flex">
         <button class="btn btn-outline-secondary me-auto border">Cancelar Alteração</button>
-        <button class="btn btn-success">
-          <span class="spinner-border spinner-border-sm me-1"></span> Salvar Alteração
-        </button>
+        <button class="btn btn-success"><span></span> Salvar Alteração</button>
       </div>
     </div>
   </form>

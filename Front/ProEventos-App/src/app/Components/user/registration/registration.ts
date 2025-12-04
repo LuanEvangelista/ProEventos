@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  AbstractControlOptions,
   FormBuilder,
   FormGroup,
   FormsModule,
@@ -8,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { ValidatorField } from '@app/helpers/ValidatorField';
 
 @Component({
   selector: 'app-registration',
@@ -31,13 +33,20 @@ export class Registration {
   }
 
   validation(): void {
-    this.form = this.fb.group({
-      primeiroNome: ['', Validators.required],
-      ultimoNome: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      userName: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-    });
+    const formOption: AbstractControlOptions = {
+      validators: ValidatorField.MustMatch('password', 'confirmPassword'),
+    };
+
+    this.form = this.fb.group(
+      {
+        primeiroNome: ['', Validators.required],
+        ultimoNome: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        userName: ['', Validators.required],
+        password: ['', Validators.required],
+        confirmPassword: ['', Validators.required],
+      },
+      formOption
+    );
   }
 }
