@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { TitulosComponent } from '../../../shared/Titulos/Titulos.component';
-import { AbstractControlOptions, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControlOptions,
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ValidatorField } from '@app/helpers/ValidatorField';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.scss'],
-  imports: [TitulosComponent,ReactiveFormsModule,FormsModule],
+  imports: [CommonModule, TitulosComponent, ReactiveFormsModule, FormsModule],
 })
 export class PerfilComponent implements OnInit {
   form!: FormGroup;

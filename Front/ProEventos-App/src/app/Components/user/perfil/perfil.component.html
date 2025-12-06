@@ -48,7 +48,11 @@
           </div>
           <div class="col mb-3">
             <label>Título</label>
-            <select class="form-control" >
+            <select
+              class="form-control"
+              [ngClass]="{ 'is-invalid': f.titulo?.errors && f.titulo?.touched }"
+              formControlName="titulo"
+            >
               <option value=""></option>
               <option value="0">Não Quero</option>
               <option value="Senhorita">Tecnólogo(a)</option>
@@ -62,33 +66,82 @@
           </div>
           <div class="col-sm-5 mb-3">
             <label>Primeiro Nome</label>
-            <input type="text" class="form-control"  />
+            <input
+              type="text"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': f.primeiroNome?.errors && f.primeiroNome?.touched }"
+              formControlName="primeiroNome"
+            />
+            @if(f.primeiroNome.errors?.required && f.primeiroNome?.touched){
+            <div class="invalid-feedback">Primeiro Nome é obrigatório.</div>
+            }
           </div>
           <div class="col-sm-5 mb-3">
             <label>Último nome</label>
-            <input type="text" class="form-control" />
+            <input
+              type="text"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': f.ultimoNome?.errors && f.ultimoNome?.touched }"
+              formControlName="ultimoNome"
+            />
+            @if(f.ultimoNome.errors?.required && f.ultimoNome?.touched){
+            <div class="invalid-feedback">Último Nome é obrigatório.</div>
+            }
           </div>
         </div>
         <div class="row">
           <div class="col-sm-5 mb-3">
             <label>E-mail</label>
-            <input type="text" class="form-control" />
+            <input
+              type="text"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': f.email?.errors && f.email?.touched }"
+              formControlName="email"
+            />
+            @if(f.email.errors?.required && f.email?.touched){
+            <div class="invalid-feedback">E-mail é obrigatório.</div>
+            }@else if(f.email.errors?.email && f.email?.touched){
+            <div class="invalid-feedback">E-mail inválido.</div>
+            }
           </div>
           <div class="col-sm-4 mb-3">
             <label>Telefone</label>
-            <input type="text" class="form-control" />
+            <input
+              type="text"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': f.telefone?.errors && f.telefone?.touched }"
+              formControlName="telefone"
+            />
+            @if(f.telefone.errors?.required && f.telefone?.touched){
+            <div class="invalid-feedback">Telefone é obrigatório.</div>
+            }
           </div>
           <div class="col-sm mb-3">
             <label>Função</label>
-            <select class="form-control">
+            <select
+              class="form-control"
+              [ngClass]="{ 'is-invalid': f.funcao?.errors && f.funcao?.touched }"
+              formControlName="funcao"
+            >
               <option value=""></option>
               <option value="Participante">Participante</option>
               <option value="Palestrante">Palestrante</option>
             </select>
+            @if(f.funcao.errors?.required && f.funcao?.touched){
+            <div class="invalid-feedback">Função é obrigatório.</div>
+            }
           </div>
           <div class="col-12 mb-3">
             <label>Descrição</label>
-            <input type="text" class="form-control" />
+            <input
+              type="text"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': f.descricao?.errors && f.descricao?.touched }"
+              formControlName="descricao"
+            />
+            @if(f.descricao.errors?.required && f.descricao?.touched){
+            <div class="invalid-feedback">Descrição é obrigatório.</div>
+            }
           </div>
         </div>
         <div>
@@ -98,11 +151,29 @@
         <div class="row">
           <div class="col-sm mb-3">
             <label>Senha</label>
-            <input type="password" class="form-control" />
+            <input
+              type="password"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': f.senha?.errors && f.senha?.touched }"
+              formControlName="senha"
+            />
+            @if(f.senha.errors?.required && f.senha?.touched){
+            <div class="invalid-feedback">Senha é obrigatório.</div>
+            }
           </div>
           <div class="col-sm mb-3">
             <label>Confirmar Senha</label>
-            <input type="password" class="form-control" />
+            <input
+              type="password"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': f.confirmarSenha?.errors && f.confirmarSenha?.touched }"
+              formControlName="confirmarSenha"
+            />
+            @if(f.confirmarSenha.errors?.required && f.confirmarSenha?.touched){
+            <div class="invalid-feedback">Confirmar Senha é obrigatório.</div>
+            } @else if (f.confirmarSenha.errors?.mustMatch && f.confirmarSenha?.touched) {
+            <div class="invalid-feedback">As senhas não coincidem.</div>
+            }
           </div>
         </div>
       </div>
